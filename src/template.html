@@ -3,16 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>To-Do List</title>
 </head>
 <body>
-<div class="nav">
-    <button class="add-task">Add Task +</button>
-    <button class="add-project">Add Project +</button>
 
-</div>
-<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <h1>To-Do List</h1>
+    </header>
 
-</div>
+    <main class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <button id="add-project">+ New Project</button>
+
+            <nav class="project-list">
+
+                <!-- Default Project -->
+                <button id="inbox-project" class="project-item active">
+                    📥 Inbox
+                </button>
+
+                <!-- Dynamic Projects -->
+                <div id="project-container">
+                    <!-- Project buttons/cards inserted here -->
+                </div>
+
+            </nav>
+
+        </aside>
+
+        <!-- Main Content -->
+        <section class="content">
+
+            <!-- Current Project -->
+            <header class="content-header">
+
+                <div>
+                    <h2 id="project-title">Inbox</h2>
+                    <p id="project-description">
+                        All your tasks.
+                    </p>
+                </div>
+
+                <button id="add-task">
+                    + Add Task
+                </button>
+
+            </header>
+
+            <!-- Task List -->
+            <div id="task-container">
+
+                <!--
+                <div class="task-card">
+                    <h3>Study OOP</h3>
+                    <p>Finish prototype lesson.</p>
+                    <p>Due: 2026-07-20</p>
+                    <span class="priority high">High</span>
+                </div>
+                -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ========================= -->
+    <!-- Task Dialog -->
+    <!-- ========================= -->
+
+    <dialog id="task-dialog">
+
+        <form id="task-form">
+
+            <h2>New Task</h2>
+
+            <input
+                id="title"
+                type="text"
+                placeholder="Task title"
+                required
+            >
+
+            <textarea
+                id="description"
+                placeholder="Description"
+            ></textarea>
+
+            <input
+                id="due-date"
+                type="date"
+            >
+
+            <select id="priority">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select>
+
+            <label>
+                <input
+                    id="reminder"
+                    type="checkbox"
+                >
+                Reminder
+            </label>
+
+            <div class="buttons">
+                <button id="save-task" type="submit">
+                    Save
+                </button>
+
+                <button
+                    id="cancel-task"
+                    type="button"
+                >
+                    Cancel
+                </button>
+            </div>
+
+        </form>
+
+    </dialog>
+
+    <!-- ========================= -->
+    <!-- Project Dialog -->
+    <!-- ========================= -->
+
+    <dialog id="project-dialog">
+
+        <form id="project-form">
+
+            <h2>New Project</h2>
+
+            <input
+                id="project-name"
+                type="text"
+                placeholder="Project name"
+                required
+            >
+
+            <textarea
+                id="project-description-input"
+                placeholder="Description"
+            ></textarea>
+
+            <input
+                id="project-color"
+                type="color"
+                value="#4f46e5"
+            >
+
+            <div class="buttons">
+
+                <button
+                    id="save-project"
+                    type="submit"
+                >
+                    Create
+                </button>
+
+                <button
+                    id="cancel-project"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
 </body>
 </html>

@@ -1,7 +1,12 @@
+//project.js//
+
 import { Task } from "./task.js";
 
-export class Todos { 
-    constructor() { 
+export class Project { 
+    constructor(name,des,color) { 
+        this.name = name;
+        this.des = des;
+        this.color = color;
         this.list = [];
     }
 
@@ -13,10 +18,9 @@ export class Todos {
 
 
 
-export const toDos = new Todos();
-toDos.addTask('test','test',12/20/2025,'test','test');
+export const project = new Project();
 
-console.log(toDos.list);
+
 
 
 
