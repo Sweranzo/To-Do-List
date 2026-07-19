@@ -14,6 +14,8 @@ display.showProjects();
 
 
 addProjectBtn.addEventListener('click', () => {
+    display.mode = 'add';
+    display.editingProject = null;
     projectDialog.showModal();
 })
 
@@ -23,7 +25,16 @@ cancelProjectBtn.addEventListener('click', () => {
 
 saveProjectBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    myProjects.addProject(projectNameInput.value,projectDescriptionInput.value,projectColorInput.value);
+
+    if(display.mode === 'add'){ 
+       myProjects.addProject(projectNameInput.value,projectDescriptionInput.value,projectColorInput.value);
+    } else {
+        display.editingProject.name = projectNameInput.value; 
+        display.editingProject.des = projectDescriptionInput.value;
+        display.editingProject.color = projectColorInput.value;
+    }
+
+    
     projectForm.reset();
     display.showProjects();
     projectDialog.close();

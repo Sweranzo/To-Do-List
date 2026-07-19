@@ -1,6 +1,7 @@
 import { addtask,addproject,taskContainer,projectContainer,projectNameInput,projectDescriptionInput,projectTitle,
 projectDescription,inboxProject,contentHeader, 
-addTaskBtn} from "./dom.js";
+addTaskBtn,projectDialog,projectPara,
+projectColorInput,saveProjectBtn} from "./dom.js";
 import {MyProjects, myProjects} from "./myprojects.js";
 import { project } from "./project.js";
 import trashIcon from "./delete.png" 
@@ -9,10 +10,13 @@ export class Display{
 
     constructor(){
         this.currentProject = null; 
+        this.mode = "add";
+       this.editingProject = null; 
 
     }
 
     showTask(projects){ 
+       
         taskContainer.textContent = '';
         projects.list.forEach(task => { 
             const taskCard = document.createElement('div');
@@ -30,15 +34,17 @@ export class Display{
             const deleteTask = document.createElement('button');
             deleteTask.textContent = 'remove'; 
             deleteTask.addEventListener('click', () => { 
-                project.removeTask(task.id);
-                this.showProjects();
+                projects.removeTask(task.id);
+                this.showTask(projects);
             })
+
             taskCard.append(title,des,date,priority,reminder,deleteTask);
             taskContainer.append(taskCard);
         })
     }
 
     showProjects(){
+ 
     addTaskBtn.style.display = 'none';
     projectContainer.textContent = '';
     
@@ -63,8 +69,20 @@ export class Display{
     
     const projectDes = document.createElement("p");
     projectDes.textContent = project.des;
+    const editProject = document.createElement('button'); 
+    editProject.textContent = 'edit'; 
+    
+    editProject.addEventListener('click', () => {
+        this.mode = "edit";
+        this.editingProject = project; 
 
-    projectItem.append(projectName);
+        projectNameInput.value = project.name;
+        projectDescriptionInput.value = project.des;
+        projectColorInput.value = project.color;
+        projectDialog.showModal();
+    })
+   
+    projectItem.append(projectName,editProject);
 
     if(project.name !== "Inbox") {     
     const trash = document.createElement('img');

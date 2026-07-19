@@ -4,7 +4,7 @@
 export const contentHeader = document.querySelector('#content-header');
 export const addProjectBtn = document.querySelector("#add-project");
 export const projectContainer = document.querySelector("#project-container");
-
+export const projectPara = document.querySelector(".project-para");
 // =========================
 // Main Content
 // =========================
