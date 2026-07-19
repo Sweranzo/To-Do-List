@@ -3,7 +3,8 @@ import "./style.css";
 import { MyProjects,myProjects } from "./myprojects.js";
 import { addProjectBtn,taskDialog,projectDialog,projectContainer,saveTaskBtn,
 cancelTaskBtn,saveProjectBtn,projectNameInput,projectDescriptionInput,projectColorInput,cancelProjectBtn,
-addTaskBtn,titleInput,descriptionInput,dueDateInput,priorityInput,reminderInput} from "./dom.js";
+addTaskBtn,titleInput,descriptionInput,dueDateInput,priorityInput,reminderInput,inboxProject,taskForm,
+projectForm} from "./dom.js";
 import { Display } from "./display.js";
 import { project } from "./project.js";
 
@@ -11,8 +12,6 @@ import { project } from "./project.js";
 const display = new Display();
 display.showProjects();
 
-
-console.log(projectDescriptionInput);
 
 addProjectBtn.addEventListener('click', () => {
     projectDialog.showModal();
@@ -25,6 +24,7 @@ cancelProjectBtn.addEventListener('click', () => {
 saveProjectBtn.addEventListener('click', (e) => {
     e.preventDefault();
     myProjects.addProject(projectNameInput.value,projectDescriptionInput.value,projectColorInput.value);
+    projectForm.reset();
     display.showProjects();
     projectDialog.close();
 })
@@ -42,7 +42,12 @@ saveTaskBtn.addEventListener('click',(e) => {
     }
 
     display.currentProject.addTask(titleInput.value,descriptionInput.value,dueDateInput.value,priorityInput.value,reminderInput.checked);
+    taskForm.reset();
     display.showTask(display.currentProject);
+    taskDialog.close();
+})
+
+cancelTaskBtn.addEventListener('click', () => {
     taskDialog.close();
 })
 

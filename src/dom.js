@@ -1,9 +1,8 @@
 // =========================
 // Sidebar
 // =========================
-
+export const contentHeader = document.querySelector('#content-header');
 export const addProjectBtn = document.querySelector("#add-project");
-export const inboxProject = document.querySelector("#inbox-project");
 export const projectContainer = document.querySelector("#project-container");
 
 // =========================
@@ -32,7 +31,6 @@ export const reminderInput = document.querySelector("#reminder");
 
 export const saveTaskBtn = document.querySelector("#save-task");
 export const cancelTaskBtn = document.querySelector("#cancel-task");
-
 
 // =========================
 // Project Dialog

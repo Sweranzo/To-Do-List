@@ -9,7 +9,7 @@
 
     <!-- Header -->
     <header class="header">
-        <h1>To-Do List</h1>
+        <h1>To do List</h1>
     </header>
 
     <main class="app">
@@ -20,11 +20,6 @@
             <button id="add-project">+ New Project</button>
 
             <nav class="project-list">
-
-                <!-- Default Project -->
-                <button id="inbox-project" class="project-item active">
-                    📥 Inbox
-                </button>
 
                 <!-- Dynamic Projects -->
                 <div id="project-container">
@@ -42,9 +37,9 @@
             <header class="content-header">
 
                 <div>
-                    <h2 id="project-title">Inbox</h2>
+                    <h2 id="project-title">Select Project</h2>
                     <p id="project-description">
-                        All your tasks.
+                        to add your tasks
                     </p>
                 </div>
 
@@ -80,7 +75,7 @@
 
         <form id="task-form">
 
-            <h2>New Task</h2>
+            <p>New Task</p>
 
             <input
                 id="title"
@@ -89,10 +84,11 @@
                 required
             >
 
-            <textarea
+            <input
                 id="description"
+                type="text"
                 placeholder="Description"
-            ></textarea>
+            ></input>
 
             <input
                 id="due-date"
@@ -129,7 +125,7 @@
         </form>
 
     </dialog>
-
+  
     <!-- ========================= -->
     <!-- Project Dialog -->
     <!-- ========================= -->
@@ -138,7 +134,7 @@
 
         <form id="project-form">
 
-            <h2>New Project</h2>
+            <p>New Project</p>
 
             <input
                 id="project-name"
@@ -147,10 +143,11 @@
                 required
             >
 
-            <textarea
+            <input
                 id="project-description-input"
+                type="text"
                 placeholder="Description"
-            ></textarea>
+            >
 
             <input
                 id="project-color"

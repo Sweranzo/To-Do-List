@@ -1,9 +1,11 @@
 import { Project } from "./project.js";
 import { Task } from "./task.js";
+import { inboxProject } from "./dom.js";
 
 export class MyProjects {
     constructor(){
         this.projects = [];
+        this.selectedId = null;
     }
     
     addProject(name,des,color){ 
@@ -12,12 +14,25 @@ export class MyProjects {
         this.projects.push(newProject);
     }
 
-    
+    deleteProject(id){
+        const index = this.projects.findIndex(proj => proj.id === id)
+
+        if (index !== -1){
+            this.projects.splice(index,1);
+        }
+    }
+
+    selectedProjectId(id){
+        this.selectedId = id;
+    }
+
+
 }
 
 export const myProjects = new MyProjects();
+myProjects.addProject('Inbox','Personal Task','Yellow');
 myProjects.addProject('Education','test desc','Blue');
-myProjects.addProject('Workout','Test','Color');
+myProjects.addProject('Workout','Test','red');
 
 
 
