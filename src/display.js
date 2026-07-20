@@ -1,10 +1,12 @@
 import { addtask,addproject,taskContainer,projectContainer,projectNameInput,projectDescriptionInput,projectTitle,
 projectDescription,inboxProject,contentHeader, 
 addTaskBtn,projectDialog,projectPara,
-projectColorInput,saveProjectBtn} from "./dom.js";
+projectColorInput,saveProjectBtn,bgContainer} from "./dom.js";
 import {MyProjects, myProjects} from "./myprojects.js";
 import { project } from "./project.js";
-import trashIcon from "./delete.png" 
+import trashIcon from "./delete.png"; 
+import editIcon from "./edit.png";
+import videoBackground from "./sakura.mp4";
 
 export class Display{
 
@@ -13,6 +15,15 @@ export class Display{
         this.mode = "add";
        this.editingProject = null; 
 
+    }
+
+    showBackground (){
+        const video = document.createElement('video'); 
+        video.src = videoBackground;
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        bgContainer.append(video); 
     }
 
     showTask(projects){ 
@@ -28,9 +39,15 @@ export class Display{
             const date = document.createElement('p');
             date.textContent = `${task.date}`;
             const priority = document.createElement('p');
+            priority.classList.add('priority-para');
             priority.textContent = `${task.priority}`;
-            const reminder = document.createElement('p');
-            reminder.textContent = `${task.reminder}`;
+            if(task.priority === 'High') {
+                priority.style.backgroundColor = 'red';
+            } else if (task.priority === 'Low') {
+                 priority.style.backgroundColor = 'green';
+            }else if (task.priority === 'Medium'){
+                 priority.style.backgroundColor = 'yellow';
+            }
             const deleteTask = document.createElement('button');
             deleteTask.textContent = 'remove'; 
             deleteTask.addEventListener('click', () => { 
@@ -38,9 +55,9 @@ export class Display{
                 this.showTask(projects);
             })
 
-            taskCard.append(title,des,date,priority,reminder,deleteTask);
+            taskCard.append(title,des,date,deleteTask,priority);
             taskContainer.append(taskCard);
-        })
+        }) 
     }
 
     showProjects(){
@@ -55,6 +72,10 @@ export class Display{
     projectItem.classList.add("project-item");
     const projectName = document.createElement("p");
     projectName.textContent = project.name;
+    const projectToolDiv = document.createElement('div');
+    projectToolDiv.classList.add('project-tool');
+
+
 
 
      if (project.id === myProjects.selectedId){
@@ -69,20 +90,27 @@ export class Display{
     
     const projectDes = document.createElement("p");
     projectDes.textContent = project.des;
-    const editProject = document.createElement('button'); 
-    editProject.textContent = 'edit'; 
+    const editProject = document.createElement('img'); 
+    editProject.classList.add('edit-icon');
+    editProject.src = editIcon; 
     
     editProject.addEventListener('click', () => {
         this.mode = "edit";
         this.editingProject = project; 
 
+        if (project.name === 'Inbox') { 
+            projectNameInput.style.Display = 'none';
+        }
+        projectPara.textContent = 'Edit Project'
+        
         projectNameInput.value = project.name;
         projectDescriptionInput.value = project.des;
         projectColorInput.value = project.color;
         projectDialog.showModal();
     })
    
-    projectItem.append(projectName,editProject);
+
+    projectItem.append(projectName);
 
     if(project.name !== "Inbox") {     
     const trash = document.createElement('img');
@@ -97,8 +125,12 @@ export class Display{
         this.showProjects();
         
     })
+    
+    projectToolDiv.append(editProject, trash)
 
-    projectItem.append(trash);
+    projectItem.append(projectToolDiv);
+    
+    
     }
      
 

@@ -4,19 +4,23 @@ import { MyProjects,myProjects } from "./myprojects.js";
 import { addProjectBtn,taskDialog,projectDialog,projectContainer,saveTaskBtn,
 cancelTaskBtn,saveProjectBtn,projectNameInput,projectDescriptionInput,projectColorInput,cancelProjectBtn,
 addTaskBtn,titleInput,descriptionInput,dueDateInput,priorityInput,reminderInput,inboxProject,taskForm,
-projectForm} from "./dom.js";
+projectForm,projectPara} from "./dom.js";
 import { Display } from "./display.js";
 import { project } from "./project.js";
 
 
 const display = new Display();
 display.showProjects();
-
+display.showBackground();
 
 addProjectBtn.addEventListener('click', () => {
+
     display.mode = 'add';
     display.editingProject = null;
+    projectPara.textContent = 'Add Project'
     projectDialog.showModal();
+    projectForm.reset();
+    display.showProjects();
 })
 
 cancelProjectBtn.addEventListener('click', () => {
@@ -52,7 +56,7 @@ saveTaskBtn.addEventListener('click',(e) => {
         return;
     }
 
-    display.currentProject.addTask(titleInput.value,descriptionInput.value,dueDateInput.value,priorityInput.value,reminderInput.checked);
+    display.currentProject.addTask(titleInput.value,descriptionInput.value,dueDateInput.value,priorityInput.value);
     taskForm.reset();
     display.showTask(display.currentProject);
     taskDialog.close();
