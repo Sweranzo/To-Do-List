@@ -27,6 +27,11 @@ body {
     width: 200px;
 }
 
+.header img:hover{
+    transform: none;
+    box-shadow: none;
+}
+
 button:focus,
 select:focus,
 input:focus,
