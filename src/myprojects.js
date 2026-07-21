@@ -1,6 +1,4 @@
 import { Project } from "./project.js";
-import { Task } from "./task.js";
-import { inboxProject } from "./dom.js";
 import { saveData } from "./storage.js";
 
 export class MyProjects {

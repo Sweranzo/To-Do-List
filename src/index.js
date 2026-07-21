@@ -1,11 +1,10 @@
 import "./style.css";
 
-import { MyProjects, myProjects } from "./myprojects.js";
+import { myProjects } from "./myprojects.js";
 import {
   addProjectBtn,
   taskDialog,
   projectDialog,
-  projectContainer,
   saveTaskBtn,
   cancelTaskBtn,
   saveProjectBtn,
@@ -18,14 +17,11 @@ import {
   descriptionInput,
   dueDateInput,
   priorityInput,
-  reminderInput,
-  inboxProject,
   taskForm,
   projectForm,
   projectPara,
 } from "./dom.js";
 import { Display } from "./display.js";
-import { project } from "./project.js";
 import { saveData, loadData } from "./storage.js";
 
 const display = new Display();

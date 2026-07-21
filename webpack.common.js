@@ -12,6 +12,7 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
+      favicon: "./src/logo.png",
     }),
   ],
   module: {
