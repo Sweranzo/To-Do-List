@@ -1,6 +1,6 @@
-# Webpack Template
+# To-do-list Project
 
-Personal webpack starter template for The Odin Project.
+    To-do-list is an application for organize schedule making. It integrates schedule, tasks, and projects into an interactive user interface design.
 
 ## Installation
 
