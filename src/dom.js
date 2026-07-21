@@ -1,8 +1,8 @@
 // =========================
 // Sidebar
 // =========================
-export const header = document.querySelector('.header');
-export const contentHeader = document.querySelector('.content-header');
+export const header = document.querySelector(".header");
+export const contentHeader = document.querySelector(".content-header");
 export const addProjectBtn = document.querySelector("#add-project");
 export const projectContainer = document.querySelector("#project-container");
 export const projectPara = document.querySelector(".project-para");
@@ -11,9 +11,10 @@ export const bgContainer = document.querySelector(".background-video");
 // Main Content
 // =========================
 
-
 export const projectTitle = document.querySelector("#project-title");
-export const projectDescription = document.querySelector("#project-description");
+export const projectDescription = document.querySelector(
+  "#project-description",
+);
 
 export const addTaskBtn = document.querySelector("#add-task");
 export const taskContainer = document.querySelector("#task-container");
@@ -21,7 +22,7 @@ export const taskContainer = document.querySelector("#task-container");
 // =========================
 // Task Dialog
 // =========================
-export const taskPara = document.querySelector('.task-para');
+export const taskPara = document.querySelector(".task-para");
 export const taskDialog = document.querySelector("#task-dialog");
 export const taskForm = document.querySelector("#task-form");
 
@@ -41,9 +42,10 @@ export const projectDialog = document.querySelector("#project-dialog");
 export const projectForm = document.querySelector("#project-form");
 
 export const projectNameInput = document.querySelector("#project-name");
-export const projectDescriptionInput = document.querySelector("#project-description-input");
+export const projectDescriptionInput = document.querySelector(
+  "#project-description-input",
+);
 export const projectColorInput = document.querySelector("#project-color");
 
 export const saveProjectBtn = document.querySelector("#save-project");
 export const cancelProjectBtn = document.querySelector("#cancel-project");
-

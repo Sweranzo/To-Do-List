@@ -1,61 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
-</head>
-<body>
-
-    <div class="background-video">
-
-    </div>
+  </head>
+  <body>
+    <div class="background-video"></div>
     <!-- Header -->
-    <header class="header">
-     
-    </header>
+    <header class="header"></header>
 
     <main class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button id="add-project">+ New Project</button>
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
+        <nav class="project-list">
+          <!-- Dynamic Projects -->
+          <div id="project-container">
+            <!-- Project buttons/cards inserted here -->
+          </div>
+        </nav>
+      </aside>
 
-            <button id="add-project">+ New Project</button>
+      <!-- Main Content -->
+      <section class="content">
+        <!-- Current Project -->
+        <header class="content-header">
+          <div>
+            <h2 id="project-title">Select Project</h2>
+            <p id="project-description">to add your tasks</p>
+          </div>
 
-            <nav class="project-list">
+          <button id="add-task">+ Add Task</button>
+        </header>
 
-                <!-- Dynamic Projects -->
-                <div id="project-container">
-                    <!-- Project buttons/cards inserted here -->
-                </div>
-
-            </nav>
-
-        </aside>
-
-        <!-- Main Content -->
-        <section class="content">
-
-            <!-- Current Project -->
-            <header class="content-header">
-
-                <div>
-                    <h2 id="project-title">Select Project</h2>
-                    <p id="project-description">
-                        to add your tasks
-                    </p>
-                </div>
-
-                <button id="add-task">
-                    + Add Task
-                </button>
-
-            </header>
-
-            <!-- Task List -->
-            <div id="task-container">
-
-                <!--
+        <!-- Task List -->
+        <div id="task-container">
+          <!--
                 <div class="task-card">
                     <h3>Study OOP</h3>
                     <p>Finish prototype lesson.</p>
@@ -63,11 +45,8 @@
                     <span class="priority high">High</span>
                 </div>
                 -->
-
-            </div>
-
-        </section>
-
+        </div>
+      </section>
     </main>
 
     <!-- ========================= -->
@@ -75,102 +54,58 @@
     <!-- ========================= -->
 
     <dialog id="task-dialog">
+      <form id="task-form">
+        <p class="task-para">New Task</p>
 
-        <form id="task-form">
+        <input id="title" type="text" placeholder="Task title" required />
 
-            <p class="task-para">New Task</p>
+        <input id="description" type="text" placeholder="Description" />
 
-            <input
-                id="title"
-                type="text"
-                placeholder="Task title"
-                required
-            >
+        <input id="due-date" type="date" />
 
-            <input
-                id="description"
-                type="text"
-                placeholder="Description"
-            ></input>
+        <select id="priority">
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
 
-            <input
-                id="due-date"
-                type="date"
-            >
+        <div class="buttons">
+          <button id="save-task" type="submit">Save</button>
 
-            <select id="priority">
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-            </select>
-
-            <div class="buttons">
-                <button id="save-task" type="submit">
-                    Save
-                </button>
-
-                <button
-                    id="cancel-task"
-                    type="button"
-                >
-                    Cancel
-                </button>
-            </div>
-
-        </form>
-
+          <button id="cancel-task" type="button">Cancel</button>
+        </div>
+      </form>
     </dialog>
-  
+
     <!-- ========================= -->
     <!-- Project Dialog -->
     <!-- ========================= -->
 
     <dialog id="project-dialog">
+      <form id="project-form">
+        <p class="project-para">New Project</p>
 
-        <form id="project-form">
+        <input
+          id="project-name"
+          type="text"
+          placeholder="Project name"
+          required
+        />
 
-            <p class="project-para">New Project</p>
+        <input
+          id="project-description-input"
+          type="text"
+          placeholder="Description"
+        />
 
-            <input
-                id="project-name"
-                type="text"
-                placeholder="Project name"
-                required
-            >
+        <input id="project-color" type="color" value="#4f46e5" />
 
-            <input
-                id="project-description-input"
-                type="text"
-                placeholder="Description"
-            >
+        <div class="buttons">
+          <button id="save-project" type="submit">Create</button>
 
-            <input
-                id="project-color"
-                type="color"
-                value="#4f46e5"
-            >
-
-            <div class="buttons">
-
-                <button
-                    id="save-project"
-                    type="submit"
-                >
-                    Create
-                </button>
-
-                <button
-                    id="cancel-project"
-                    type="button"
-                >
-                    Cancel
-                </button>
-
-            </div>
-
-        </form>
-
+          <button id="cancel-project" type="button">Cancel</button>
+        </div>
+      </form>
     </dialog>
-
-</body>
+  </body>
 </html>

@@ -1,4 +1,3 @@
-
 // webpack.config.js
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
@@ -10,26 +9,25 @@ export default {
     path: path.resolve(import.meta.dirname, "dist"),
     clean: true,
   },
-    plugins: [
+  plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
     }),
   ],
   module: {
-  rules: [
-    {
-      test: /\.css$/i,
-      use: ["style-loader", "css-loader"],
-    },
-    {
-    test: /\.(png|svg|jpg|jpeg|gif)$/i,
-    type: "asset/resource",
-    },
-    {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+      {
         test: /\.(mp4|webm|ogg)$/i,
         type: "asset/resource",
-    },
-  ],
-},
+      },
+    ],
+  },
 };
-
