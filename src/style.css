@@ -420,4 +420,5 @@ input:focus {
   background-color: transparent;
   backdrop-filter: blur(20px);
   border: 0.5px solid rgba(255, 255, 255, 0.233);
+  background-color: red; sadfsadfsd
 }

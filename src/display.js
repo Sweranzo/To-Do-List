@@ -1,19 +1,15 @@
 import {
-  addtask,
-  addproject,
   taskContainer,
   projectContainer,
   projectNameInput,
   projectDescriptionInput,
   projectTitle,
   projectDescription,
-  inboxProject,
   contentHeader,
   addTaskBtn,
   projectDialog,
   projectPara,
   projectColorInput,
-  saveProjectBtn,
   bgContainer,
   titleInput,
   descriptionInput,
@@ -23,8 +19,7 @@ import {
   taskDialog,
   header,
 } from "./dom.js";
-import { MyProjects, myProjects } from "./myprojects.js";
-import { project } from "./project.js";
+import { myProjects } from "./myprojects.js";
 import trashIcon from "./delete.png";
 import editIcon from "./edit.png";
 import videoBackground from "./sakura.mp4";
