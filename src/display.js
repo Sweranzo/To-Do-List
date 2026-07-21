@@ -2,13 +2,14 @@ import { addtask,addproject,taskContainer,projectContainer,projectNameInput,proj
 projectDescription,inboxProject,contentHeader, 
 addTaskBtn,projectDialog,projectPara,
 projectColorInput,saveProjectBtn,bgContainer,titleInput,descriptionInput,dueDateInput,priorityInput,taskPara,
-taskDialog} from "./dom.js";
+taskDialog,header} from "./dom.js";
 import {MyProjects, myProjects} from "./myprojects.js";
 import { project } from "./project.js";
 import trashIcon from "./delete.png"; 
 import editIcon from "./edit.png";
 import videoBackground from "./sakura.mp4";
 import luffy from "./luffy.png";
+import logo from "./logo.png";
 
 export class Display{
 
@@ -29,6 +30,10 @@ export class Display{
         const headerCharacter = document.createElement('img');
         headerCharacter.src = luffy;
         contentHeader.append(headerCharacter);
+        const logoImg = document.createElement('img');
+        logoImg.src = logo;
+        header.append(logoImg);
+
     }
 
     showTask(projects){ 

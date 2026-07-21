@@ -21,6 +21,12 @@ body {
     
 }
 
+.header img{
+    position: absolute;
+    height: 100px;
+    width: 200px;
+}
+
 button:focus,
 select:focus,
 input:focus,
@@ -69,6 +75,7 @@ img:hover {
 
 
 .sidebar { 
+    margin-top: 50px;
     display: flex;
     flex-direction: column ;
     width: 200px;
@@ -97,6 +104,8 @@ n
 main { 
     display: grid;
     grid-template: 1fr / 0fr 4fr;
+    margin-top: 30px;
+    
    
     
 }
