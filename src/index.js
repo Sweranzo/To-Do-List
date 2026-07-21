@@ -7,11 +7,14 @@ addTaskBtn,titleInput,descriptionInput,dueDateInput,priorityInput,reminderInput,
 projectForm,projectPara} from "./dom.js";
 import { Display } from "./display.js";
 import { project } from "./project.js";
+import { saveData,loadData } from "./storage.js";
 
 
 const display = new Display();
+myProjects.projects = loadData();
+console.log(myProjects.projects);
 display.showProjects();
-display.showBackground();
+display.render();
 
 addProjectBtn.addEventListener('click', () => {
 
@@ -36,6 +39,8 @@ saveProjectBtn.addEventListener('click', (e) => {
         display.editingProject.name = projectNameInput.value; 
         display.editingProject.des = projectDescriptionInput.value;
         display.editingProject.color = projectColorInput.value;
+
+        saveData();
     }
 
     
@@ -45,6 +50,7 @@ saveProjectBtn.addEventListener('click', (e) => {
 })
 
 addTaskBtn.addEventListener('click', () => {
+    display.mode = 'add';
     taskDialog.showModal();
 })
 
@@ -56,7 +62,17 @@ saveTaskBtn.addEventListener('click',(e) => {
         return;
     }
 
-    display.currentProject.addTask(titleInput.value,descriptionInput.value,dueDateInput.value,priorityInput.value);
+    if(display.mode === 'add') {
+        display.currentProject.addTask(titleInput.value,descriptionInput.value,dueDateInput.value,priorityInput.value);
+    } else {
+        display.editingTask.title = titleInput.value;
+        display.editingTask.des = descriptionInput.value;
+        display.editingTask.date = dueDateInput.value;
+        display.editingTask.priority = priorityInput.value;
+
+        saveData();
+    }
+
     taskForm.reset();
     display.showTask(display.currentProject);
     taskDialog.close();

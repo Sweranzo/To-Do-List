@@ -1,29 +1,34 @@
 import { addtask,addproject,taskContainer,projectContainer,projectNameInput,projectDescriptionInput,projectTitle,
 projectDescription,inboxProject,contentHeader, 
 addTaskBtn,projectDialog,projectPara,
-projectColorInput,saveProjectBtn,bgContainer} from "./dom.js";
+projectColorInput,saveProjectBtn,bgContainer,titleInput,descriptionInput,dueDateInput,priorityInput,taskPara,
+taskDialog} from "./dom.js";
 import {MyProjects, myProjects} from "./myprojects.js";
 import { project } from "./project.js";
 import trashIcon from "./delete.png"; 
 import editIcon from "./edit.png";
 import videoBackground from "./sakura.mp4";
+import luffy from "./luffy.png";
 
 export class Display{
 
     constructor(){
         this.currentProject = null; 
         this.mode = "add";
-       this.editingProject = null; 
-
+        this.editingProject = null; 
+        this.editingTask = null;
     }
 
-    showBackground (){
+    render (){
         const video = document.createElement('video'); 
         video.src = videoBackground;
         video.autoplay = true;
         video.muted = true;
         video.loop = true;
         bgContainer.append(video); 
+        const headerCharacter = document.createElement('img');
+        headerCharacter.src = luffy;
+        contentHeader.append(headerCharacter);
     }
 
     showTask(projects){ 
@@ -48,14 +53,42 @@ export class Display{
             }else if (task.priority === 'Medium'){
                  priority.style.backgroundColor = 'yellow';
             }
-            const deleteTask = document.createElement('button');
-            deleteTask.textContent = 'remove'; 
-            deleteTask.addEventListener('click', () => { 
+            const taskBottomNavDiv = document.createElement('div');
+            taskBottomNavDiv.classList.add('task-bottom');
+            const editTaskDiv = document.createElement('div');
+            editTaskDiv.classList.add('edit-task-div');
+            const deleteTask = document.createElement('img');
+            deleteTask.classList.add('trash-can');
+            deleteTask.src = trashIcon; 
+            deleteTask.addEventListener('click', () => {''
+                const alertUser = confirm('are you sure you want to delete this taks?');
+                if(alertUser){ 
                 projects.removeTask(task.id);
+                }
                 this.showTask(projects);
             })
+            const editTask = document.createElement('img');
+            editTask.classList.add('edit-icon');
+            editTask.src = editIcon;
+            editTask.addEventListener('click', () => {
+                this.mode = 'edit';
+                this.editingTask = task; 
+                titleInput.value = task.title; 
+                descriptionInput.value = task.des;
+                dueDateInput.value = task.date; 
+                priorityInput.value = task.priority;
+            taskPara.textContent = 'Edit Task';
+            taskCard.classList.toggle('zoom-in');
+            taskDialog.showModal();
+            })
 
-            taskCard.append(title,des,date,deleteTask,priority);
+            editTaskDiv.append(deleteTask,editTask)
+            taskBottomNavDiv.append(editTaskDiv,priority);
+
+            taskCard.append(title,des,date,taskBottomNavDiv);
+            taskCard.addEventListener('click', () => {
+                    taskCard.classList.toggle('zoom-in');
+            })
             taskContainer.append(taskCard);
         }) 
     }
@@ -80,7 +113,7 @@ export class Display{
 
      if (project.id === myProjects.selectedId){
             projectItem.style.borderLeft = `4px solid ${project.color}`
-             projectName.style.color = "gray";
+             projectName.style.color = "rgb(255, 238, 248)";
              projectName.style.fontWeight = "bolder";
              projectName.style.fontSize = "larger";
             addTaskBtn.style.display = 'block';

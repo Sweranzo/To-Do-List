@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 
@@ -16,7 +17,17 @@ body {
     grid-template-rows: auto 1fr;
      grid-template-columns: 1fr;
     background-color: rgba(3, 3, 3, 0.048);
+    overflow: hidden;
     
+}
+
+button:focus,
+select:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #39c5ff;
+    box-shadow: 0 0 8px rgba(57,197,255,.6);
 }
 
 .background-video {
@@ -38,7 +49,7 @@ button {
     transition: transform 0.25s ease-out;
 }
 
-button:hover {  
+button:hover, .task-card:hover {  
     cursor: pointer;
     transform: scale(1.05);
     box-shadow: 0px 0px 14px 6px rgba(255,255,255,0.72);
@@ -66,12 +77,14 @@ img:hover {
   
     
 }
-
+n
 .sidebar button {
     width: 100%;
-    background-color: white;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
     text-align: center;
     border-radius: 5px;
+    color: white;
 }
 
 #inbox-project {
@@ -84,42 +97,95 @@ img:hover {
 main { 
     display: grid;
     grid-template: 1fr / 0fr 4fr;
-    border: 2px solid red;
+   
     
 }
 
 main button,#project-dialog button, #task-dialog button{
-
+    background-color: transparent;
+    backdrop-filter: blur(50px);
     border:none;
     padding: 0.5rem;
-    box-shadow: 0px 8px 7px 0px rgba(0, 0, 0, 0.116);
-    border: 1px solid rgba(128, 128, 128, 0.116);
-    color: rgba(0, 0, 0, 0.466);
-    background-color: white;
+ 
+     border: 0.5px solid rgba(255, 255, 255, 0.233);
+    color: white;
+    font-weight: bold;
+    
    
 }
 
 
 .content {
+    position: relative;
   display: flex;
   flex-direction: column;
   gap:1rem;
   border-left: 2px solid white;
   padding-left: 1rem;
     padding-right: 1rem;
+  
 }
 
 .content-header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center  ;
     gap: 10px;
     padding: 10px;
-    background-color: white;
-    
-    
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    min-height: 100px;
+    color: white;
+  
+     border-radius: 8px;
+      animation: sakura-blue-glow 4s infinite ease-in-out; 
 }
+
+@keyframes sakura-blue-glow {
+  0%, 100% {
+
+    box-shadow: 0 0 5px rgba(255, 183, 197, 0.3);
+  }
+  25% {
+    
+    box-shadow: 0 0 15px #ffb7c5, 0 0 30px #ffb7c5;
+    border-color: #ffb7c5;
+  }
+  50% {
+   
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+  }
+  75% {
+  
+    box-shadow: 0 0 15px #00f3ff, 0 0 30px #00f3ff;
+    border-color: #00f3ff;
+  }
+}
+.content-header img{
+    position: absolute;
+    z-index: -1;
+    top: -40px;
+    height: 200px;
+    transform: rotate(21deg);
+    justify-self: center;
+    align-self: center;
+}
+
+.content-header button {
+    align-self: self-start;
+}
+
+.content-header img:hover{
+    box-shadow: none;
+}
+.content-header div {
+    width: 100%;
+}
+.content-header h2, p{ 
+
+justify-self: flex-start;
+
+}
+
 
 #task-container { 
     display: grid;
@@ -132,21 +198,33 @@ main button,#project-dialog button, #task-dialog button{
    
 }
 
-.task-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content: center;
-    border: transparent;
-    padding: 10px;
- /*    height: 100%;
-    width: 100%; */
-    box-shadow: 0px 8px 7px 0px rgba(0, 0, 0, 0.116);
-    color: rgba(0, 0, 0, 0.603);
-    background-color: white;
-    border-radius: 10px;
-     min-width: 0;
+#task-container::-webkit-scrollbar {
+    width: 8px; 
 }
+
+#task-container::-webkit-scrollbar-track {
+    background: transparent !important; 
+}
+
+
+#task-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+}
+
+#task-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 183, 197, 0.5); 
+}
+
+
+@supports (scrollbar-width: thin) {
+    #task-container {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    }
+}
+
 .task-card h3 {
     font-size: 15px;
     white-space: nowrap;
@@ -159,6 +237,55 @@ main button,#project-dialog button, #task-dialog button{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.task-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    border: transparent;
+    padding: 10px;
+ /*    height: 100%;
+    width: 100%; */
+    box-shadow: 0px 8px 7px 0px rgba(0, 0, 0, 0.116);
+    color:white;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+     min-width: 0;
+
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1); 
+  z-index: 1;
+}
+
+.task-card.zoom-in { 
+  position: absolute;
+    top: 40%;
+    left: 40%;
+    transform: translate(-50%, -50%) scale(1.15);  
+  width: 300px;
+  height: 300px;
+  z-index: 999; 
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+  overflow: visible;
+
+&.zoom-in p {
+    font-size: 14px !important;            
+    white-space: normal !important;        
+    overflow: visible !important;          
+    text-overflow: clip !important;        
+    margin-top: 10px;           
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+.task-bottom { 
+    display: flex;
+    justify-content: space-between;
+}
+
 .trash-can, .edit-icon {
     height: 15px;
     width: 15px;
@@ -182,10 +309,14 @@ main button,#project-dialog button, #task-dialog button{
     left: 50%;
     transform: translate(-50%, -50%);   
     padding: 1rem;
-    border: transparent;   
+    border:1px solid rgba(255, 255, 255, 0.212);   
     width: 400px;
     height:400px;
     border-radius: 10px;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    color: white;
+
 }
 
 #task-form {
@@ -193,6 +324,17 @@ main button,#project-dialog button, #task-dialog button{
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#task-form select {
+    background-color: transparent;
+    color: white;
+}
+option {
+    background-color: #1b2b4b;
+    color: white;
 }
 
 .priority-para {
@@ -223,16 +365,16 @@ main button,#project-dialog button, #task-dialog button{
 #project-name, #project-description-input, #title, #description, #due-date, #priority{
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.295);
+    border: 1px solid rgba(255, 255, 255, 0.219);
     font-family: "Lato", sans-serif;
-    color:gray;
+    color:white;
 }
 /* #project-name,#project-description-input input {
     width: 100%;
 }
  */
 
- .project-tool { 
+ .project-tool, .edit-task-div { 
     display: flex;
     gap: 10px;
  }
@@ -242,6 +384,12 @@ main button,#project-dialog button, #task-dialog button{
     border: none;
     height: 40px;
     background-color: none;
+    border-radius: 50%;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid white;
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
@@ -254,10 +402,13 @@ input[type="color"]::-webkit-color-swatch {
     border: none;
     border-radius: 50%;
 }
-
+input::placeholder {
+    color: rgba(255, 255, 255, 0.432);
+}
 input:focus {
 outline: none;
-color: rgba(3, 3, 3, 0.603);
+color: white;
+box-shadow: 0px 0px 14px 6px rgba(255,255,255,0.72);
 
 
 }
@@ -269,7 +420,11 @@ color: rgba(3, 3, 3, 0.603);
     align-items: center;
     justify-content: center;
     height: 100%;
-    
-        
-    
+    color: white;
+}
+
+#project-dialog {
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(255, 255, 255, 0.233);
 }

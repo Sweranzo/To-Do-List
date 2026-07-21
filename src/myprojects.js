@@ -1,6 +1,7 @@
 import { Project } from "./project.js";
 import { Task } from "./task.js";
 import { inboxProject } from "./dom.js";
+import { saveData } from "./storage.js";
 
 export class MyProjects {
     constructor(){
@@ -12,6 +13,7 @@ export class MyProjects {
         let newProject = new Project(name,des,color); 
         console.log(newProject);
         this.projects.push(newProject);
+        saveData();
     }
 
     deleteProject(id){
@@ -20,6 +22,8 @@ export class MyProjects {
         if (index !== -1){
             this.projects.splice(index,1);
         }
+
+        saveData();
     }
 
     selectedProjectId(id){
@@ -30,10 +34,10 @@ export class MyProjects {
 }
 
 export const myProjects = new MyProjects();
-myProjects.addProject('Inbox','Personal Task','Yellow');
-myProjects.addProject('Education','test desc','Blue');
+ /* myProjects.addProject('Inbox','Personal Task','Yellow'); */
+/*myProjects.addProject('Education','test desc','Blue');
 myProjects.addProject('Workout','Test','red');
 
 
-
+ */
 

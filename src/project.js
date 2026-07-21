@@ -1,6 +1,7 @@
 //project.js//
 
 import { Task } from "./task.js";
+import {saveData} from "./storage.js";
 
 export class Project { 
     constructor(name,des,color) {
@@ -11,9 +12,10 @@ export class Project {
         this.list = [];
     }
 
-    addTask (title,des,date,priority,reminder) {
-        let newTask = new Task(title,des,date,priority,reminder);
+    addTask (title,des,date,priority) {
+        let newTask = new Task(title,des,date,priority);
         this.list.push(newTask);
+        saveData();
     }
 
     removeTask (id) { 
@@ -21,6 +23,7 @@ export class Project {
         if (index !== -1 ){
             this.list.splice(index,1);
         }
+        saveData()
     }
 }
 
